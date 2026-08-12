@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Country House | Verduras & Productos Orgánicos a Domicilio</title>
+  <meta name="description" content="Country House - Verduras y frutas orgánicas recién cosechadas del campo a la puerta de tu casa en horas. Calidad premium, cajas personalizables y recetas deliciosas." />
+  
+  <!-- Tailwind CSS & Google Fonts -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#154212",
+            "primary-container": "#2d5a27",
+            secondary: "#9f4200",
+            "secondary-container": "#f27121",
+            tertiary: "#79000b",
+            background: "#fbf9f4",
+            surface: "#ffffff",
+            "surface-container": "#f0eee9",
+            "surface-container-low": "#f5f3ee",
+            "on-surface": "#1b1c19",
+            "on-surface-variant": "#42493e",
+            "outline-variant": "#c2c9bb",
+          },
+          fontFamily: {
+            heading: ["Plus Jakarta Sans", "sans-serif"],
+            body: ["Source Sans 3", "sans-serif"],
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-background text-on-surface font-body antialiased overflow-x-hidden">
+
+  <!-- Floating Toast Notifications Container -->
+  <div id="toast-container"></div>
+
+  <!-- Top Navigation Bar -->
+  <header class="fixed top-0 w-full z-40 nav-glass transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 cursor-pointer group">
+        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition-transform">
+          <span class="material-symbols-outlined text-2xl">home_work</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-heading font-extrabold text-xl tracking-tight text-primary leading-none">Country House</span>
+          <span class="font-heading text-xs font-semibold text-secondary tracking-widest uppercase">Organic Farm & Delivery</span>
+        </div>
+      </a>
+
+      <!-- Search Input Bar (Desktop) -->
+      <div class="hidden md:flex items-center flex-1 max-w-md mx-8 relative">
+        <span class="material-symbols-outlined absolute left-3.5 text-outline text-xl pointer-events-none">search</span>
+        <input type="text" id="search-input" placeholder="Buscar tomates, zanahorias, recetas..." class="w-full pl-11 pr-4 py-2.5 rounded-full bg-surface-container/70 border border-outline-variant/60 focus:bg-surface focus:border-primary focus:ring-2 focus:ring-primary/20 text-sm transition-all outline-none" />
+      </div>
+
+      <!-- Navigation Actions -->
+      <div class="flex items-center gap-4">
+        <!-- Filter Tabs Short Links -->
+        <a href="#catalogo" class="hidden lg:block text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">Catálogo</a>
+        <a href="#canasta" class="hidden lg:block text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">Arma tu Canasta</a>
+        <a href="#receta" class="hidden lg:block text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">Receta del Mes</a>
+
+        <!-- Cart Button -->
+        <button id="cart-btn" class="relative bg-primary-container/10 hover:bg-primary-container/20 text-primary p-3 rounded-full transition-all duration-300 flex items-center justify-center cursor-pointer active:scale-95">
+          <span class="material-symbols-outlined text-2xl">shopping_cart</span>
+          <span id="cart-count-badge" class="absolute -top-1 -right-1 bg-secondary text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-md">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative h-[85vh] min-h-[620px] w-full flex items-center justify-center overflow-hidden pt-20">
+    <div class="absolute inset-0 w-full h-full overflow-hidden">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUBvhUhC_IO4Q7T1S5Bo9qlbJjZVRN1-iq3qxq8vFv-vS3LTkGawvouyogIsr3kveWHnN2AMDgFo6Ib5MSROfXkJTbMmc2UfYcJdRJ52Yla1dQ7mLHRfnKkeie0t0PtbMkhuG0EzJmkNz6MqqPxCcbys56pEndq-EFnU7yxmjnAW7aJ3YI70ptQ_ZZ4zkPjL-eMouAIyTgNFJfC9FDxocOkf5gueITfL_8lyEfEVHp8lLbhVK0PWLs" alt="Verduras frescas de Country House" class="absolute inset-0 w-full h-full object-cover hero-zoom" />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/30"></div>
+    </div>
+
+    <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+      <span class="inline-block bg-secondary-container/90 backdrop-blur-md text-white text-xs sm:text-sm font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-6 shadow-lg pulse-badge">
+        🏡 Country House - 100% Cosecha Orgánica
+      </span>
+      <h1 class="text-4xl sm:text-6xl font-extrabold text-white mb-6 drop-shadow-md leading-tight">
+        De Nuestra Finca a tu Mesa <br/><span class="text-secondary-container">en Cuestión de Horas</span>
+      </h1>
+      <p class="text-lg sm:text-xl text-white/90 mb-10 max-w-2xl mx-auto font-normal leading-relaxed">
+        En Country House seleccionamos a mano los mejores productos agrícolas cada mañana. Experimenta la verdadera frescura del campo en la puerta de tu casa.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#catalogo" class="w-full sm:w-auto bg-secondary-container hover:bg-secondary text-white font-bold py-4 px-9 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 text-sm uppercase tracking-wider">
+          Explorar Productos
+        </a>
+        <a href="#canasta" class="w-full sm:w-auto bg-white/10 backdrop-blur-md hover:bg-white/20 text-white border border-white/40 font-bold py-4 px-9 rounded-full transition-all duration-300 text-sm uppercase tracking-wider">
+          Armar mi Canasta
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories & Filter Section -->
+  <section id="catalogo" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-10">
+      <h2 class="text-3xl font-extrabold text-primary mb-3">Nuestra Selección de Cosecha</h2>
+      <p class="text-on-surface-variant max-w-2xl mx-auto text-base">
+        Filtra por categoría para encontrar verduras, frutas frescas y cajas de temporada de la más alta calidad Country House.
+      </p>
+
+      <!-- Filter Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mt-8">
+        <button class="category-tab active px-5 py-2.5 rounded-full text-sm font-semibold border border-outline-variant/60 transition-all cursor-pointer" data-category="all">
+          Todos los Productos
+        </button>
+        <button class="category-tab bg-surface-container text-on-surface-variant px-5 py-2.5 rounded-full text-sm font-semibold border border-outline-variant/60 hover:bg-primary/10 transition-all cursor-pointer" data-category="verduras">
+          🥦 Verduras Frescas
+        </button>
+        <button class="category-tab bg-surface-container text-on-surface-variant px-5 py-2.5 rounded-full text-sm font-semibold border border-outline-variant/60 hover:bg-primary/10 transition-all cursor-pointer" data-category="frutas">
+          🍎 Frutas de Estación
+        </button>
+        <button class="category-tab bg-surface-container text-on-surface-variant px-5 py-2.5 rounded-full text-sm font-semibold border border-outline-variant/60 hover:bg-primary/10 transition-all cursor-pointer" data-category="packs">
+          📦 Packs de Temporada
+        </button>
+        <button class="category-tab bg-surface-container text-on-surface-variant px-5 py-2.5 rounded-full text-sm font-semibold border border-outline-variant/60 hover:bg-primary/10 transition-all cursor-pointer" data-category="organicos">
+          🌱 Cultivo 100% Orgánico
+        </button>
+      </div>
+    </div>
+
+    <!-- Products Grid (Rendered Dynamically via JS) -->
+    <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Loaded dynamically via app.js -->
+    </div>
+  </section>
+
+  <!-- Custom Box Builder Section -->
+  <section id="canasta" class="py-16 bg-surface-container-low border-y border-outline-variant/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="text-secondary font-bold text-xs uppercase tracking-widest mb-2 block">Personalizador Country House</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-primary mb-5 leading-tight">
+            Crea tu Canasta Orgánica <br/>a la Medida de tu Hogar
+          </h2>
+          <p class="text-on-surface-variant mb-6 leading-relaxed">
+            ¿Prefieres elegir exactamente la cantidad y variedad de tus verduras de la semana? Elige el tamaño de tu canasta y nosotros la empacaremos cuidadosamente en madera ecológica reutilizable.
+          </p>
+
+          <div class="space-y-4 mb-8">
+            <div class="flex items-center gap-4 p-4 rounded-xl bg-surface border border-outline-variant/60">
+              <span class="material-symbols-outlined text-primary text-3xl">check_circle</span>
+              <div>
+                <h4 class="font-bold text-on-surface text-sm">Garantía de Cosecha Fresca</h4>
+                <p class="text-xs text-on-surface-variant">Seleccionada el mismo día de la entrega.</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 p-4 rounded-xl bg-surface border border-outline-variant/60">
+              <span class="material-symbols-outlined text-primary text-3xl">local_shipping</span>
+              <div>
+                <h4 class="font-bold text-on-surface text-sm">Empaque Ecológico Reutilizable</h4>
+                <p class="text-xs text-on-surface-variant">Sin plásticos innecesarios ni contaminantes.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Box Size Form Selector -->
+          <div class="bg-surface p-6 rounded-2xl border border-outline-variant/80 shadow-sm">
+            <label for="box-size" class="block font-bold text-sm text-on-surface mb-2">Selecciona el Tamaño de tu Canasta:</label>
+            <select id="box-size" class="w-full p-3 rounded-xl bg-surface-container border border-outline-variant text-sm font-semibold mb-6 outline-none focus:border-primary">
+              <option value="individual">Canasta Individual (3-4 kg) - $15.00</option>
+              <option value="mediana" selected>Canasta Mediana Familiar (6-8 kg) - $24.00</option>
+              <option value="familiar">Canasta Familiar Grande (10-12 kg) - $35.00</option>
+            </select>
+            <button onclick="addCustomBoxToCart()" class="w-full bg-secondary hover:bg-secondary-container text-white font-bold py-3.5 px-6 rounded-full transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 cursor-pointer active:scale-95">
+              <span class="material-symbols-outlined">shopping_basket</span>
+              Añadir Canasta Personalizada al Carrito
+            </button>
+          </div>
+        </div>
+
+        <div class="relative">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBONh-DN6pg8nWZvFsckLS2YhFkcPIVM63KaqR5ENld0_8B5yIeBAmW57O5DrRLapYohwK1LNf3lWPzEyKosagGVCXEfrIQDYEbCw_aQmEzaDG2Qp0ODuhyWq9gYi4nXwnWQpZnagGF3xt30qE2LHQLnaPGJS_1Un7Y9GOz162T9ZVXYrccmjUFwMOEbNrQLlzYRCUjI4cXQRZBJIOqzDCIeKqs5h9zC5vzpQ2yjKxKSZJwhbEts47o" alt="Caja de verduras orgánicas Country House" class="w-full h-auto rounded-3xl shadow-xl object-cover aspect-[4/3]" />
+          <div class="absolute -bottom-6 -left-6 bg-primary text-white p-6 rounded-2xl shadow-lg hidden sm:block max-w-xs">
+            <span class="text-3xl font-extrabold block">100%</span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-primary-container">Orgánico & Directo de la Finca Country House</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Health & Benefits Section -->
+  <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-extrabold text-primary mb-3">Beneficios y Salud para tu Familia</h2>
+      <p class="text-on-surface-variant max-w-2xl mx-auto text-base">Aliméntate con propósito. Nuestros productos frescos cuidan de ti y del medio ambiente.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-surface p-8 rounded-3xl border border-outline-variant/60 shadow-sm text-center">
+        <div class="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+          <span class="material-symbols-outlined text-3xl">local_florist</span>
+        </div>
+        <h3 class="text-lg font-bold text-primary mb-3">Rico en Vitamina C</h3>
+        <p class="text-sm text-on-surface-variant leading-relaxed">Fortalece tu sistema inmunológico con nuestra selección de cítricos y pimientos recién cosechados.</p>
+      </div>
+
+      <div class="bg-surface p-8 rounded-3xl border border-outline-variant/60 shadow-sm text-center">
+        <div class="w-16 h-16 bg-secondary/10 text-secondary rounded-full flex items-center justify-center mx-auto mb-6">
+          <span class="material-symbols-outlined text-3xl">spa</span>
+        </div>
+        <h3 class="text-lg font-bold text-secondary mb-3">Fibra Natural Viva</h3>
+        <p class="text-sm text-on-surface-variant leading-relaxed">Mejora tu digestión y energía con vegetales de hoja verde y tubérculos cultivados sin químicos sintetizados.</p>
+      </div>
+
+      <div class="bg-surface p-8 rounded-3xl border border-outline-variant/60 shadow-sm text-center">
+        <div class="w-16 h-16 bg-tertiary/10 text-tertiary rounded-full flex items-center justify-center mx-auto mb-6">
+          <span class="material-symbols-outlined text-3xl">favorite</span>
+        </div>
+        <h3 class="text-lg font-bold text-tertiary mb-3">Antioxidantes Naturales</h3>
+        <p class="text-sm text-on-surface-variant leading-relaxed">Protege tus células con nuestros tomates cherry, aguacates y frutos rojos de temporada.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recipe of the Month Section -->
+  <section id="receta" class="py-16 bg-surface-container border-y border-outline-variant/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col lg:flex-row gap-10 items-center">
+        <div class="w-full lg:w-1/2">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAk_vgc_LPI8hw-RTyLL9DJ3SQ1N2iA5PEBT4XmBWv1s_tNjvkUbb0dwuNHSBOJuya3LKbfe7xtG43ggcPmaHrdNxNcjkHjoZ9d52wSJmlW3hgjD9603T7g-qmxILRbG0s0ZpfMy6b_pgaNck5kQe5HbZPStcnrfAW4lGJrNYuztn_lvu6PgLvmec3Ft7i03G7Y1QWbKUEyjsK6yeL-lWiKKZKFSR2Hp63Z9r26Kd9c7FDjSW7Obntp" alt="Ensalada Mediterránea" class="w-full h-auto rounded-3xl shadow-lg object-cover aspect-[4/3]" />
+        </div>
+        <div class="w-full lg:w-1/2">
+          <span class="text-secondary font-bold text-xs uppercase tracking-widest mb-2 block">Receta Destacada del Mes</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-primary mb-4 leading-tight">Ensalada Mediterránea Vibrante</h2>
+          <p class="text-on-surface-variant mb-6 leading-relaxed">
+            Una explosión de frescura y color. Prepara esta deliciosa ensalada con nuestros tomates cherry, pepinos crujientes, aguacate fresco y queso feta artesanal. ¡Ideal para un almuerzo nutritivo y rápido!
+          </p>
+          <div class="flex items-center gap-4">
+            <button onclick="addRecipeBundle('Ensalada Mediterránea Vibrante')" class="bg-primary hover:bg-primary-container text-white font-bold py-3.5 px-8 rounded-full transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2 cursor-pointer active:scale-95 text-sm">
+              <span class="material-symbols-outlined">shopping_bag</span>
+              Comprar Todos los Ingredientes ($12.90)
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community Testimonials Section -->
+  <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-extrabold text-primary mb-3">Lo que Opina Nuestra Comunidad</h2>
+      <p class="text-on-surface-variant max-w-2xl mx-auto text-base">La frescura y el sabor de nuestros productos Country House nos respaldan.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-surface p-6 rounded-2xl border border-outline-variant/60 shadow-sm">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full bg-primary/20 text-primary font-bold flex items-center justify-center">ML</div>
+          <div>
+            <h4 class="font-bold text-sm text-on-surface">María L.</h4>
+            <div class="flex text-secondary text-xs">★★★★★</div>
+          </div>
+        </div>
+        <p class="text-sm text-on-surface-variant italic leading-relaxed">"Nunca había probado verduras tan frescas desde que vivía en el campo. El servicio de Country House a domicilio es impecable."</p>
+      </div>
+
+      <div class="bg-surface p-6 rounded-2xl border border-outline-variant/60 shadow-sm">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full bg-secondary/20 text-secondary font-bold flex items-center justify-center">CR</div>
+          <div>
+            <h4 class="font-bold text-sm text-on-surface">Carlos R.</h4>
+            <div class="flex text-secondary text-xs">★★★★★</div>
+          </div>
+        </div>
+        <p class="text-sm text-on-surface-variant italic leading-relaxed">"La caja de temporada de Country House es una maravilla. Me encanta la sorpresa de cada semana y me ha animado a cocinar recetas nuevas con productos orgánicos."</p>
+      </div>
+
+      <div class="bg-surface p-6 rounded-2xl border border-outline-variant/60 shadow-sm">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full bg-tertiary/20 text-tertiary font-bold flex items-center justify-center">ST</div>
+          <div>
+            <h4 class="font-bold text-sm text-on-surface">Sofía T.</h4>
+            <div class="flex text-secondary text-xs">★★★★★</div>
+          </div>
+        </div>
+        <p class="text-sm text-on-surface-variant italic leading-relaxed">"Excelente calidad y precio justo. Valoro mucho que apoyen a los agricultores locales de la finca. Ya soy cliente habitual."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide-over Shopping Cart Drawer -->
+  <div id="cart-backdrop" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs drawer-backdrop flex justify-end">
+    <div class="w-full max-w-md bg-surface h-full shadow-2xl flex flex-col drawer-content">
+      <!-- Drawer Header -->
+      <div class="p-6 border-b border-outline-variant/60 flex items-center justify-between bg-surface-container-low">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-2xl">shopping_basket</span>
+          <h3 class="font-bold text-lg text-primary">Tu Carrito Country House</h3>
+        </div>
+        <button id="close-cart-btn" class="p-2 text-on-surface-variant hover:text-on-surface rounded-full hover:bg-surface-container cursor-pointer">
+          <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+      </div>
+
+      <!-- Free Shipping Threshold Bar -->
+      <div class="px-6 py-3 bg-primary/5 border-b border-outline-variant/40">
+        <p id="free-shipping-text" class="text-xs font-semibold text-primary mb-1.5">Añade más productos para envío GRATIS</p>
+        <div class="w-full bg-surface-container rounded-full h-2 overflow-hidden">
+          <div id="free-shipping-bar" class="bg-secondary h-full transition-all duration-300" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <!-- Cart Items List Container -->
+      <div id="cart-items" class="flex-1 overflow-y-auto px-6 divide-y divide-outline-variant/40">
+        <!-- Rendered dynamically via app.js -->
+      </div>
+
+      <!-- Cart Drawer Footer / Checkout -->
+      <div class="p-6 border-t border-outline-variant/60 bg-surface-container-low space-y-3">
+        <div class="flex justify-between text-sm text-on-surface-variant">
+          <span>Subtotal:</span>
+          <span id="cart-subtotal" class="font-bold text-on-surface">$0.00</span>
+        </div>
+        <div class="flex justify-between text-sm text-on-surface-variant">
+          <span>Envío estimado:</span>
+          <span id="cart-shipping" class="font-bold text-on-surface">$3.50</span>
+        </div>
+        <div class="flex justify-between text-base font-extrabold text-primary pt-2 border-t border-outline-variant/40">
+          <span>Total:</span>
+          <span id="cart-total">$0.00</span>
+        </div>
+
+        <button onclick="processCheckoutWhatsApp()" class="w-full bg-primary hover:bg-primary-container text-white font-bold py-4 rounded-full transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 cursor-pointer active:scale-95 mt-4">
+          <span class="material-symbols-outlined text-2xl">chat</span>
+          Completar Pedido por WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Footer -->
+  <footer class="bg-primary text-white py-12 border-t border-primary-container">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <span class="material-symbols-outlined text-2xl text-secondary">home_work</span>
+          <span class="font-heading font-extrabold text-lg tracking-tight">Country House</span>
+        </div>
+        <p class="text-xs text-white/80 leading-relaxed">
+          Verduras y frutas frescas cultivadas en nuestra finca con prácticas orgánicas y sostenibles. Entrega rápida a tu hogar.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-sm text-secondary uppercase tracking-wider mb-3">Secciones</h4>
+        <ul class="space-y-2 text-xs text-white/80">
+          <li><a href="#catalogo" class="hover:text-white transition-colors">Catálogo de Verduras</a></li>
+          <li><a href="#canasta" class="hover:text-white transition-colors">Canasta Personalizable</a></li>
+          <li><a href="#receta" class="hover:text-white transition-colors">Receta del Mes</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-sm text-secondary uppercase tracking-wider mb-3">Contacto & Envíos</h4>
+        <p class="text-xs text-white/80 leading-relaxed">
+          📍 Finca Orgánica Country House<br/>
+          📞 Pedidos directos: WhatsApp activo 24/7<br/>
+          🚚 Envíos diarios de 7:00 AM a 6:00 PM
+        </p>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-sm text-secondary uppercase tracking-wider mb-3">Compromiso Orgánico</h4>
+        <p class="text-xs text-white/80 leading-relaxed">
+          Garantizamos productos libres de agroquímicos nocivos y apoyamos al comercio justo agrícola.
+        </p>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 pt-6 border-t border-white/10 text-center text-xs text-white/60">
+      © 2026 Country House - Organic Farm & Delivery. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <!-- App Script -->
+  <script src="app.js"></script>
+</body>
+</html>

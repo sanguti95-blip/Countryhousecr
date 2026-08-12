@@ -1,0 +1,35 @@
+# ==========================================================================
+# Render Infrastructure Blueprint - Country House
+# Official documentation: https://render.com/docs/blueprint-spec
+# ==========================================================================
+
+services:
+  # 1. Back-End Express REST API Web Service
+  - type: web
+    name: country-house-api
+    env: node
+    plan: free
+    region: oregon
+    buildCommand: cd server && npm install
+    startCommand: cd server && node server.js
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: NODE_ENV
+        value: production
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+
+  # 2. Front-End Client & Admin Static Site
+  - type: static
+    name: country-house-web
+    plan: free
+    region: oregon
+    buildCommand: echo "Client static site ready"
+    staticPublishPath: ./client
+    headers:
+      - path: /*
+        name: Access-Control-Allow-Origin
+        value: "*"

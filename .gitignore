@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+server/node_modules/
+
+# Environment Variables & Secrets
+.env
+server/.env
+*.env
+
+# SQLite Local Database
+*.db
+server/db/*.db
+
+# Logs
+*.log
+
+# System & OS Files
+.DS_Store
+Thumbs.db
