@@ -27,6 +27,5 @@ services:
   - type: web
     name: country-house-web
     env: static
-    plan: free
     buildCommand: echo "Client static site ready"
     staticPublishPath: client
