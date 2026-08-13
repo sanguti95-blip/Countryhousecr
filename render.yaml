@@ -24,8 +24,9 @@ services:
         value: sb_publishable_eseciU62cOTQsx99FNFhLw_Nwu6uTZE
 
   # 2. Front-End Client & Admin Static Site
-  - type: static
+  - type: web
     name: country-house-web
+    env: static
     plan: free
     region: oregon
     buildCommand: echo "Client static site ready"
