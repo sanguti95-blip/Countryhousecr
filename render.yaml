@@ -1,6 +1,6 @@
 # ==========================================================================
 # Render Infrastructure Blueprint - Country House
-# Official documentation: https://render.com/docs/blueprint-spec
+# Official specification: https://render.com/docs/blueprint-spec
 # ==========================================================================
 
 services:
@@ -10,17 +10,18 @@ services:
     env: node
     plan: free
     region: oregon
-    buildCommand: cd server && npm install
-    startCommand: cd server && node server.js
+    rootDir: server
+    buildCommand: npm install
+    startCommand: node server.js
     envVars:
       - key: PORT
         value: 5000
       - key: NODE_ENV
         value: production
       - key: SUPABASE_URL
-        sync: false
+        value: https://lpfnupdjitpndbpdxarc.supabase.co
       - key: SUPABASE_ANON_KEY
-        sync: false
+        value: sb_publishable_eseciU62cOTQsx99FNFhLw_Nwu6uTZE
 
   # 2. Front-End Client & Admin Static Site
   - type: static
@@ -28,8 +29,4 @@ services:
     plan: free
     region: oregon
     buildCommand: echo "Client static site ready"
-    staticPublishPath: ./client
-    headers:
-      - path: /*
-        name: Access-Control-Allow-Origin
-        value: "*"
+    staticPublishPath: client
